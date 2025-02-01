@@ -1,19 +1,20 @@
 import React from "react";
+import Button from "../common/Button";
 
-const TodoItem = ({ todo, handleDeleteTodo, handleToggleDone }) => {
+const TodoItem = ({ todo, handleToggleDone, handleDeleteTodo }) => {
   return (
-    <li key={todo.id}>
+    <li>
       <div>
         <h3>{todo.title}</h3>
         <p>{todo.detail}</p>
       </div>
       <div>
-        <button type="button" onClick={() => handleDeleteTodo(todo.id)}>
+        <Button type="button" onClick={() => handleDeleteTodo(todo.id)}>
           - del
-        </button>
-        <button type="button" onClick={() => handleToggleDone(todo.id)}>
-          v done
-        </button>
+        </Button>
+        <Button type="button" onClick={() => handleToggleDone(todo.id)}>
+          {!todo.isDone ? "v done" : "not Yet"}
+        </Button>
       </div>
     </li>
   );

@@ -24,6 +24,7 @@ const TodoList = ({ todos, setTodos }) => {
           if (!todo.isDone) {
             return (
               <TodoItem
+                key={todo.id}
                 todo={todo}
                 handleToggleDone={handleToggleDone}
                 handleDeleteTodo={handleDeleteTodo}
@@ -39,6 +40,7 @@ const TodoList = ({ todos, setTodos }) => {
           if (todo.isDone) {
             return (
               <TodoItem
+                key={todo.id}
                 todo={todo}
                 handleToggleDone={handleToggleDone}
                 handleDeleteTodo={handleDeleteTodo}

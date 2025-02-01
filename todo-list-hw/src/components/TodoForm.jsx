@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Button from "../common/Button";
 
 const TodoForm = ({ todos, setTodos }) => {
   const [title, setTitle] = useState("");
@@ -48,7 +49,7 @@ const TodoForm = ({ todos, setTodos }) => {
           placeholder="상세사항"
         />
       </StLabel>
-      <button type="submit">+ add</button>
+      <Button type="submit">+ add</Button>
     </StForm>
   );
 };
