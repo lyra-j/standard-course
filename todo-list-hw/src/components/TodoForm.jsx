@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../common/Button";
+import InputBox from "../common/InputBox";
 
 const TodoForm = ({ todos, setTodos }) => {
   const [title, setTitle] = useState("");
@@ -29,26 +30,26 @@ const TodoForm = ({ todos, setTodos }) => {
 
   return (
     <StForm onSubmit={handleSubmit}>
-      <StLabel htmlFor="inputTitle">
+      <InputBox
+        htmlFor="inputTitle"
+        id="inputTitle"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="할 일"
+      >
         제목
-        <StInput
-          type="text"
-          id="inputTitle"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="할 일"
-        />
-      </StLabel>
-      <StLabel htmlFor="inputDetail">
+      </InputBox>
+
+      <InputBox
+        htmlFor="inputDetail"
+        id="inputDetail"
+        value={detail}
+        onChange={(e) => setDetail(e.target.value)}
+        placeholder="상세사항"
+      >
         내용
-        <StInput
-          type="text"
-          id="inputDetail"
-          value={detail}
-          onChange={(e) => setDetail(e.target.value)}
-          placeholder="상세사항"
-        />
-      </StLabel>
+      </InputBox>
+
       <Button type="submit">+ add</Button>
     </StForm>
   );
@@ -67,16 +68,4 @@ const StForm = styled.form`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-`;
-const StLabel = styled.label`
-  color: #1b4242;
-  font-size: 16px;
-  font-weight: 500;
-`;
-const StInput = styled.input`
-  width: 120px;
-  height: 20px;
-  padding: 2px 6px;
-  margin-left: 5px;
-  border-radius: 5px;
 `;
