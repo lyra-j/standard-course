@@ -18,7 +18,7 @@ function App() {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
 
-  // todo 추가 로직
+  // CREATE todo 추가 로직
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -41,6 +41,14 @@ function App() {
 
   //  // 콘솔에 값을 입력할 때 마다 계속 찍히는데 이게 맞는거임?
   // console.log(todos);
+
+  // UPDATE 완료 여부 토글
+  const handleToggleDone = (id) => {
+    const toggleDone = todos.map((todo) => {
+      return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
+    });
+    setTodos(toggleDone);
+  };
 
   return (
     <>
@@ -84,7 +92,9 @@ function App() {
                     </div>
                     <div>
                       <button>- del</button>
-                      <button>v doneToggle</button>
+                      <button onClick={() => handleToggleDone(todo.id)}>
+                        v done
+                      </button>
                     </div>
                   </li>
                 );
@@ -94,16 +104,24 @@ function App() {
 
           <div>
             <h2>DONE!! 🎉</h2>
-            <li>
-              <div>
-                <h3>todo Title</h3>
-                <p>todo Detail</p>
-              </div>
-              <div>
-                <button>- del</button>
-                <button>v doneToggle</button>
-              </div>
-            </li>
+            {todos.map((todo) => {
+              if (todo.isDone) {
+                return (
+                  <li key={todo.id}>
+                    <div>
+                      <h3>{todo.title}</h3>
+                      <p>{todo.detail}</p>
+                    </div>
+                    <div>
+                      <button>- del</button>
+                      <button onClick={() => handleToggleDone(todo.id)}>
+                        v not Yet
+                      </button>
+                    </div>
+                  </li>
+                );
+              }
+            })}
           </div>
         </div>
       </MainContainer>
