@@ -1,62 +1,99 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import styled from "styled-components";
+import "./App.css";
 
 function App() {
-  const [todos, setTodos] = useState();
+  // 로컬스토리지에서 초기값 가져오기, 없을 경우 빈 배열
+  const [todos, setTodos] = useState(() => {
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : [];
+  });
 
   const [title, setTitle] = useState("");
   const [detail, setDetail] = useState("");
 
-  const handleSubmit = () => {};
+  // todo변경될 때 마다 로컬스토리지에 저장
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+
+  // todo 추가 로직
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newTodo = {
+      id: Date.now(),
+      title,
+      detail,
+      isDone: false,
+    };
+
+    // 제목 || 내용 입력 안내
+    if (!title.trim() || !detail.trim()) {
+      alert(`제목과 내용을 모두 입력해주세요~!!`);
+      return;
+    }
+
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+  };
+
+  //  // 콘솔에 값을 입력할 때 마다 계속 찍히는데 이게 맞는거임?
+  // console.log(todos);
 
   return (
     <>
-      <main>
-        <h1>todo list</h1>
+      <MainContainer>
+        <StTitle>Standard Todo List</StTitle>
         {/* 입력 폼 */}
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="inputTitle">
+        <StForm onSubmit={handleSubmit}>
+          <StLabel htmlFor="inputTitle">
             제목
-            <input
+            <StInput
               type="text"
               id="inputTitle"
               value={title}
-              onChange={() => setTitle(e.target.value)}
+              onChange={(e) => setTitle(e.target.value)}
               placeholder="할 일"
-              required
             />
-          </label>
-          <label htmlFor="inputDetail">
-            제목
-            <input
+          </StLabel>
+          <StLabel htmlFor="inputDetail">
+            내용
+            <StInput
               type="text"
               id="inputDetail"
               value={detail}
-              onChange={() => setDetail(e.target.value)}
+              onChange={(e) => setDetail(e.target.value)}
               placeholder="상세사항"
-              required
             />
-          </label>
+          </StLabel>
           <button type="submit">+ add</button>
-        </form>
+        </StForm>
         {/* 할일 목록 보드 */}
         <div>
           <div>
-            <h2>Working..🔥</h2>
-            <li>
-              <div>
-                <h3>todo Title</h3>
-                <p>todo Detail</p>
-              </div>
-              <div>
-                <button>- del</button>
-                <button>v doneToggle</button>
-              </div>
-            </li>
+            <h2>WORKING..🔥</h2>
+            {todos.map((todo) => {
+              if (!todo.isDone) {
+                return (
+                  <li key={todo.id}>
+                    <div>
+                      <h3>{todo.title}</h3>
+                      <p>{todo.detail}</p>
+                    </div>
+                    <div>
+                      <button>- del</button>
+                      <button>v doneToggle</button>
+                    </div>
+                  </li>
+                );
+              }
+            })}
           </div>
 
           <div>
-            <h2>Done!! 🎉</h2>
+            <h2>DONE!! 🎉</h2>
             <li>
               <div>
                 <h3>todo Title</h3>
@@ -69,9 +106,48 @@ function App() {
             </li>
           </div>
         </div>
-      </main>
+      </MainContainer>
     </>
   );
 }
 
 export default App;
+
+const MainContainer = styled.main`
+  width: 100vh;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StTitle = styled.h1`
+  font-size: 30px;
+  font-weight: 600;
+  color: #317575;
+`;
+const StForm = styled.form`
+  width: 70%;
+  background-color: #67a6916b;
+  padding: 10px 14px;
+  margin-top: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+const StLabel = styled.label`
+  color: #1b4242;
+  font-size: 16px;
+  font-weight: 500;
+`;
+const StInput = styled.input`
+  width: 120px;
+  height: 20px;
+  padding: 2px 6px;
+  margin-left: 5px;
+  border-radius: 5px;
+`;
