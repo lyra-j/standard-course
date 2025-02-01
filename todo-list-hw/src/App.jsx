@@ -50,6 +50,12 @@ function App() {
     setTodos(toggleDone);
   };
 
+  // DELETE 삭제 로직
+  const handleDeleteTodo = (id) => {
+    const deleteTodo = todos.filter((todo) => todo.id !== id);
+    setTodos(deleteTodo);
+  };
+
   return (
     <>
       <MainContainer>
@@ -91,8 +97,16 @@ function App() {
                       <p>{todo.detail}</p>
                     </div>
                     <div>
-                      <button>- del</button>
-                      <button onClick={() => handleToggleDone(todo.id)}>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteTodo(todo.id)}
+                      >
+                        - del
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleToggleDone(todo.id)}
+                      >
                         v done
                       </button>
                     </div>
@@ -113,8 +127,16 @@ function App() {
                       <p>{todo.detail}</p>
                     </div>
                     <div>
-                      <button>- del</button>
-                      <button onClick={() => handleToggleDone(todo.id)}>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteTodo(todo.id)}
+                      >
+                        - del
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleToggleDone(todo.id)}
+                      >
                         v not Yet
                       </button>
                     </div>
