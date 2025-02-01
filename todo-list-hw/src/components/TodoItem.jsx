@@ -1,23 +1,50 @@
 import React from "react";
+import styled from "styled-components";
 import Button from "../common/Button";
 
 const TodoItem = ({ todo, handleToggleDone, handleDeleteTodo }) => {
   return (
-    <li>
-      <div>
-        <h3>{todo.title}</h3>
-        <p>{todo.detail}</p>
-      </div>
-      <div>
+    <StTodoContainer>
+      <StTodoWrapper>
+        <StTodoTitle>{todo.title}</StTodoTitle>
+        <StTodoDetail>{todo.detail}</StTodoDetail>
+      </StTodoWrapper>
+      <StButtonWrapper>
         <Button type="button" onClick={() => handleDeleteTodo(todo.id)}>
           - del
         </Button>
         <Button type="button" onClick={() => handleToggleDone(todo.id)}>
           {!todo.isDone ? "v done" : "not Yet"}
         </Button>
-      </div>
-    </li>
+      </StButtonWrapper>
+    </StTodoContainer>
   );
 };
 
 export default TodoItem;
+
+// styled-components
+const StTodoContainer = styled.li`
+  background-color: #d7e1b9;
+  width: 150px;
+  padding: 20px;
+  border-radius: 10px;
+`;
+const StTodoWrapper = styled.div`
+  margin-bottom: 20px;
+`;
+const StTodoTitle = styled.h3`
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #c46915;
+`;
+const StTodoDetail = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  color: #534b4b;
+`;
+const StButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;

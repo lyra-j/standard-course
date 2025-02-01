@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos, setTodos }) => {
@@ -17,9 +18,10 @@ const TodoList = ({ todos, setTodos }) => {
   };
 
   return (
-    <div>
-      <div>
-        <h2>WORKING..🔥</h2>
+    <StTodoBoard>
+      {/* isDone === false */}
+      <StSubTitle>WORKING..🔥</StSubTitle>
+      <StTodoListWrapper>
         {todos.map((todo) => {
           if (!todo.isDone) {
             return (
@@ -32,10 +34,11 @@ const TodoList = ({ todos, setTodos }) => {
             );
           }
         })}
-      </div>
+      </StTodoListWrapper>
 
-      <div>
-        <h2>DONE!! 🎉</h2>
+      {/* isDone === true */}
+      <StSubTitle>DONE!! 🎉</StSubTitle>
+      <StTodoListWrapper>
         {todos.map((todo) => {
           if (todo.isDone) {
             return (
@@ -48,9 +51,37 @@ const TodoList = ({ todos, setTodos }) => {
             );
           }
         })}
-      </div>
-    </div>
+      </StTodoListWrapper>
+    </StTodoBoard>
   );
 };
 
 export default TodoList;
+
+// styled-components
+const StSubTitle = styled.h2`
+  font-size: 24px;
+  font-weight: 600;
+  color: #0c5228;
+  margin-bottom: 20px;
+`;
+
+const StTodoBoard = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+const StTodoListWrapper = styled.div`
+  /* background-color: aqua; */
+  width: 100%;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 25px;
+`;

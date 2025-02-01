@@ -59,10 +59,10 @@ export default TodoForm;
 
 // styled-components
 const StForm = styled.form`
-  width: 70%;
+  width: 80%;
   background-color: #67a6916b;
-  padding: 10px 14px;
-  margin-top: 20px;
+  padding: 12px 16px;
+  margin: 30px;
   border-radius: 8px;
   display: flex;
   flex-direction: row;
