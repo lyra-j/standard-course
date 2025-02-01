@@ -3,52 +3,72 @@ import styled from "styled-components";
 import Button from "../common/Button";
 import InputBox from "../common/InputBox";
 
-const TodoForm = ({ todos, setTodos }) => {
-  const [title, setTitle] = useState("");
-  const [detail, setDetail] = useState("");
+const TodoForm = ({ setTodos }) => {
+  // 🔸 n개의 input fields state
+  const [inputData, setInputData] = useState({
+    id: Date.now(),
+    title: "",
+    detail: "",
+    isDone: false,
+  });
 
-  // CREATE todo 추가 로직
+  // 🔸 n개의 input fields를 관리할 배열
+  const inputFields = [
+    {
+      inputId: "title",
+      label: "제목",
+      value: inputData.title,
+      placeholder: "새로운 할 일",
+    },
+    {
+      inputId: "detail",
+      label: "내용",
+      value: inputData.detail,
+      placeholder: "상세 사항",
+    },
+  ];
+
+  // 🔸 n개의 input onChange 로직
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setInputData((prevInput) => ({ ...prevInput, [id]: value }));
+  };
+
+  // ✅ CREATE: todo 추가 로직
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const newTodo = {
-      id: Date.now(),
-      title,
-      detail,
-      isDone: false,
-    };
-
     // 제목 || 내용 입력 안내
-    if (!title.trim() || !detail.trim()) {
+    if (!inputData.title || !inputData.detail) {
       alert(`제목과 내용을 모두 입력해주세요~!!`);
       return;
     }
 
-    const newTodos = [...todos, newTodo];
-    setTodos(newTodos);
+    setTodos((prevTodos) => [...prevTodos, inputData]);
+    setInputData({
+      id: Date.now(),
+      title: "",
+      detail: "",
+      isDone: false,
+    });
   };
 
   return (
     <StForm onSubmit={handleSubmit}>
-      <InputBox
-        htmlFor="inputTitle"
-        id="inputTitle"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="할 일"
-      >
-        제목
-      </InputBox>
-
-      <InputBox
-        htmlFor="inputDetail"
-        id="inputDetail"
-        value={detail}
-        onChange={(e) => setDetail(e.target.value)}
-        placeholder="상세사항"
-      >
-        내용
-      </InputBox>
+      {/* input이 여러개일 경우 */}
+      {inputFields.map((input) => {
+        return (
+          <InputBox
+            key={input.inputId}
+            label={input.label}
+            htmlFor={input.inputId}
+            id={input.inputId}
+            value={input.value}
+            onChange={handleInputChange}
+            placeholder={input.placeholder}
+          ></InputBox>
+        );
+      })}
 
       <Button type="submit">+ add</Button>
     </StForm>

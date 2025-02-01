@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const InputBox = ({ inputId, children, value, onChange, placeholder }) => {
+const InputBox = ({ id, label, value, onChange, placeholder }) => {
   return (
-    <StLabel htmlFor={inputId}>
-      {children}
+    <StLabel htmlFor={id}>
+      {label}
       <StInput
         type="text"
-        id={inputId}
+        id={id}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
