@@ -35,7 +35,7 @@ export default App;
 // styled-components
 const MainContainer = styled.main`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: #f8f8e9;
   display: flex;
   flex-direction: column;
