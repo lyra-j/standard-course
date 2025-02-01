@@ -70,7 +70,7 @@ const TodoForm = ({ setTodos }) => {
         );
       })}
 
-      <Button type="submit">+ add</Button>
+      <Button $add type="submit">+ add</Button>
     </StForm>
   );
 };
@@ -81,7 +81,7 @@ export default TodoForm;
 const StForm = styled.form`
   width: 80%;
   background-color: #67a6916b;
-  padding: 12px 16px;
+  padding: 16px 20px;
   margin: 30px;
   border-radius: 8px;
   display: flex;

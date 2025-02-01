@@ -60,7 +60,7 @@ export default TodoList;
 
 // styled-components
 const StSubTitle = styled.h2`
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   color: #0c5228;
   margin-bottom: 20px;
@@ -75,9 +75,8 @@ const StTodoBoard = styled.div`
 `;
 
 const StTodoListWrapper = styled.div`
-  /* background-color: aqua; */
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

@@ -10,10 +10,10 @@ const TodoItem = ({ todo, handleToggleDone, handleDeleteTodo }) => {
         <StTodoDetail>{todo.detail}</StTodoDetail>
       </StTodoWrapper>
       <StButtonWrapper>
-        <Button type="button" onClick={() => handleDeleteTodo(todo.id)}>
+        <Button $remove type="button" onClick={() => handleDeleteTodo(todo.id)}>
           - del
         </Button>
-        <Button type="button" onClick={() => handleToggleDone(todo.id)}>
+        <Button $toggle type="button" onClick={() => handleToggleDone(todo.id)}>
           {!todo.isDone ? "v done" : "not Yet"}
         </Button>
       </StButtonWrapper>
@@ -25,7 +25,7 @@ export default TodoItem;
 
 // styled-components
 const StTodoContainer = styled.li`
-  background-color: #d7e1b9;
+  background-color: #e3eec2;
   width: 150px;
   padding: 20px;
   border-radius: 10px;

@@ -21,7 +21,7 @@ function App() {
         <StTitle>Standard Todo List</StTitle>
 
         {/* 입력 폼 */}
-        <TodoForm todos={todos} setTodos={setTodos} />
+        <TodoForm setTodos={setTodos} />
 
         {/* 할일 목록 보드 */}
         <TodoList todos={todos} setTodos={setTodos} />
@@ -42,6 +42,9 @@ const MainContainer = styled.main`
   justify-content: center;
   align-items: center;
   padding: 40px;
+  @media (min-width: 768px) {
+    width: auto;
+  }
 `;
 
 const StTitle = styled.h1`
