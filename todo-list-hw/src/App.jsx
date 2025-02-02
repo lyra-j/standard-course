@@ -40,7 +40,7 @@ const MainContainer = styled.main`
   background-color: #f8f8e9;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 40px;
 `;
