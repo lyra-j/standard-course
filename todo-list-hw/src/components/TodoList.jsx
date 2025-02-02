@@ -3,18 +3,28 @@ import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
 const TodoList = ({ todos, setTodos }) => {
-  // UPDATE 완료 여부 토글
+  // ✅ UPDATE: 완료 여부 토글
   const handleToggleDone = (id) => {
-    const toggleDone = todos.map((todo) => {
-      return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
-    });
-    setTodos(toggleDone);
+    //   const toggleDone = todos.map((todo) => {
+    //     return todo.id === id ? { ...todo, isDone: !todo.isDone } : todo;
+    //   });
+    //   setTodos(toggleDone);
+
+    // 🟢 함수형 업데이트로 변경
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) =>
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
   };
 
-  // DELETE 삭제 로직
+  // ✅ DELETE: 삭제 로직
   const handleDeleteTodo = (id) => {
-    const deleteTodo = todos.filter((todo) => todo.id !== id);
-    setTodos(deleteTodo);
+    // const deleteTodo = todos.filter((todo) => todo.id !== id);
+    // setTodos(deleteTodo);
+
+    // 🟢 함수형 업데이트로 변경
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   return (

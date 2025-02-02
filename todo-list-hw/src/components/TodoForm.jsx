@@ -44,6 +44,7 @@ const TodoForm = ({ setTodos }) => {
       return;
     }
 
+    // 🟢 함수형 업데이트로 변경
     setTodos((prevTodos) => [...prevTodos, inputData]);
     setInputData({
       id: Date.now(),
@@ -70,7 +71,9 @@ const TodoForm = ({ setTodos }) => {
         );
       })}
 
-      <Button $add type="submit">+ add</Button>
+      <Button $add type="submit">
+        + add
+      </Button>
     </StForm>
   );
 };

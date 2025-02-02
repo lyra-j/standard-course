@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import styled from "styled-components";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -42,9 +43,6 @@ const MainContainer = styled.main`
   justify-content: center;
   align-items: center;
   padding: 40px;
-  @media (min-width: 768px) {
-    width: auto;
-  }
 `;
 
 const StTitle = styled.h1`
