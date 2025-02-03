@@ -11,6 +11,35 @@ const Button = ({ type, onClick, children, ...props }) => {
 
 export default Button;
 
+const handleBtnStyles = (props) => {
+  switch (true) {
+    case props.$remove:
+      return css`
+        background-color: #e6a462;
+
+        &:hover {
+          background-color: #d9822b;
+        }
+      `;
+    case props.$toggle:
+      return css`
+        background-color: #7bc1c6;
+
+        &:hover {
+          background-color: #2b9fa8;
+        }
+      `;
+    case props.$add:
+      return css`
+        background-color: #42ac67;
+
+        &:hover {
+          background-color: #317e4c;
+        }
+      `;
+  }
+};
+
 // styled-components
 const StButton = styled.button`
   font-size: 14px;
@@ -21,33 +50,5 @@ const StButton = styled.button`
   border: none;
   border-radius: 5px;
 
-  ${(props) =>
-    props.$remove &&
-    css`
-      background-color: #e6a462;
-
-      &:hover {
-        background-color: #d9822b;
-      }
-    `}
-
-  ${(props) =>
-    props.$toggle &&
-    css`
-      background-color: #7bc1c6;
-
-      &:hover {
-        background-color: #2b9fa8;
-      }
-    `}
-
-    ${(props) =>
-    props.$add &&
-    css`
-      background-color: #42ac67;
-
-      &:hover {
-        background-color: #317e4c;
-      }
-    `}
+  ${(props) => handleBtnStyles(props)}
 `;
