@@ -23,8 +23,15 @@ const TodoList = ({ todos, setTodos }) => {
     // const deleteTodo = todos.filter((todo) => todo.id !== id);
     // setTodos(deleteTodo);
 
-    // 🟢 함수형 업데이트로 변경
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    const isConfirm = confirm(`할 일을 삭제하시겠습니까?`);
+
+    if (isConfirm) {
+      // 🟢 함수형 업데이트로 변경
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+      alert(`삭제되었습니다.`);
+    } else {
+      alert(`삭제를 취소하였습니다.`);
+    }
   };
 
   return (
