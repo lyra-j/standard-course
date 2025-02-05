@@ -7,6 +7,7 @@ import {
   DeepStructure,
 } from "./styles/StyledComponents";
 
+// prop drilling 브랜치
 function App() {
   const [message, setMessage] = useState("");
 
