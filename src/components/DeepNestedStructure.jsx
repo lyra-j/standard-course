@@ -1,37 +1,39 @@
-import PropTypes from "prop-types";
+import { useContext } from "react";
+import { MessageContext } from '../context/MessageContext';
 import {
   LevelContainer,
   MessageDisplayWrapper,
 } from "../styles/StyledComponents";
 
-function Level1({ message }) {
+function Level1() {
   return (
     <LevelContainer>
       <h3>Level 1</h3>
-      <Level2 message={message} />
+      <Level2 />
     </LevelContainer>
   );
 }
 
-function Level2({ message }) {
+function Level2() {
   return (
     <LevelContainer>
       <h3>Level 2</h3>
-      <Level3 message={message} />
+      <Level3 />
     </LevelContainer>
   );
 }
 
-function Level3({ message }) {
+function Level3() {
   return (
     <LevelContainer>
       <h3>Level 3</h3>
-      <MessageDisplay message={message} />
+      <MessageDisplay />
     </LevelContainer>
   );
 }
 
-function MessageDisplay({ message }) {
+function MessageDisplay() {
+  const { message } = useContext(MessageContext);
   return (
     <MessageDisplayWrapper>
       <h3>메시지 표시 영역</h3>
@@ -39,21 +41,5 @@ function MessageDisplay({ message }) {
     </MessageDisplayWrapper>
   );
 }
-
-Level1.propTypes = {
-  message: PropTypes.string,
-};
-
-Level2.propTypes = {
-  message: PropTypes.string,
-};
-
-Level3.propTypes = {
-  message: PropTypes.string,
-};
-
-MessageDisplay.propTypes = {
-  message: PropTypes.string,
-};
 
 export default Level1;
