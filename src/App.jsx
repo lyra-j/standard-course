@@ -5,12 +5,13 @@ import {
   Content,
   DeepStructure,
 } from "./styles/StyledComponents";
-import { MessageProvider } from "./context/MessageContext";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
-// context 브랜치
+// rtk 브랜치
 function App() {
   return (
-    <MessageProvider>
+    <Provider store={store}>
       <AppContainer>
         <h2>[내배캠] 스탠다드반 프로젝트 - Prop Drilling 예제</h2>
         <Content>
@@ -20,7 +21,7 @@ function App() {
           </DeepStructure>
         </Content>
       </AppContainer>
-    </MessageProvider>
+    </Provider>
   );
 }
 
